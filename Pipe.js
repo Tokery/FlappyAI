@@ -16,24 +16,35 @@ class Pipe {
     }
 
     show() {
-        fill(0, 204, 0);
-        rect(this.x, this.topY, this.width, canvas.height);
+        if (this.isTop) {
+            fill(255,255,255);
+        } else {
+            fill(0, 204, 0);
+            
+        }
+        
+        rect(this.x, this.topY, this.width, this.height);
     }
 
     update() {
         this.x -= panSpeed;
 
-        if (this.x + this.width < 0) {
-            this.x = canvas.width;
-            this.height = floor(random(canvas.height - 100));
-            this.topY = canvas.height - this.height;
-        }
+        // if (this.x + this.width < 0) {
+        //     this.x = canvas.width;
+        //     this.height = floor(random(canvas.height - 100));
+        //     this.topY = canvas.height - this.height;
+        // }
     }
 
     collided(player) {
-        if(player.x + player.size > this.x && player.x - player.size < this.x + this.width && 
-            player.y + player.size > this.topY) {
+        const playerRadius = player.size / 2;
+        if(player.x + playerRadius > this.x && player.x - playerRadius < this.x + this.width) {
+            if (this.isTop && player.y - playerRadius < this.bottomY) {
                 return true;
+            }
+            if (!this.isTop && player.y + playerRadius > this.topY) {
+                return true;
+            }
         }
         return false;
     }
