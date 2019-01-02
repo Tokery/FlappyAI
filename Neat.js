@@ -51,7 +51,6 @@ function startEvaluation() {
     for (var genome in neat.population) {
         genome = neat.population[genome];
         
-        // Replace the following line
         new Player(100, canvas.height/2, genome);
     }
 }

@@ -17,7 +17,7 @@ class Pipe {
 
     show() {
         if (this.isTop) {
-            fill(255,255,255);
+            fill(0,204,0);
         } else {
             fill(0, 204, 0);
             

@@ -13,7 +13,12 @@ class Player {
     }
 
     show() {
-        fill(255,255,0);
+        if (!this.dead) {
+            fill(255,255,0);
+        } else {
+            fill(255, 0, 0);
+        }
+        
         ellipse(this.x, this.y, this.size);
     }
 
@@ -28,6 +33,16 @@ class Player {
             // this.y = 0;
             this.dead = true;
         }
+
+        var input = this.detect();
+        var output = this.brain.activate(input);
+        console.log(output);
+        console.log('Score', this.score);
+        this.brain.score = this.score;
+        if (output[0] > 0.5) {
+            this.flap();
+        }
+
     }
 
     detect() {
@@ -39,5 +54,9 @@ class Player {
         if (!this.dead) {
             this.velY = -25;
         }
+    }
+
+    incrementScore() {
+        this.score++;
     }
 }
