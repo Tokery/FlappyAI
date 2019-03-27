@@ -4,5 +4,6 @@ Uses NEAT AI to help cluessless birds navigate a world of unrelenting broken pip
 
 
 ## To Run
-Open `index.html` in a browser.
+Run `python -m SimpleHTTPServer` and navigate to `localhost:8000`.
 
+#### Note: This will likely use most of your CPU

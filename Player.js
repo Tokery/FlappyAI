@@ -4,12 +4,14 @@ class Player {
         this.y = y;
         this.velY = 0;
         this.velX = panSpeed;
-        this.size = 50;
+        this.size = 40;
         this.dead = false;
         this.brain = genome;
         this.brain.score = 0;
         this.score = 0;
         players.push(this);
+
+        this.birdImage = loadImage('./bird.png');
     }
 
     show() {
@@ -19,7 +21,10 @@ class Player {
             fill(255, 0, 0);
         }
         
+        
         ellipse(this.x, this.y, this.size);
+        image(this.birdImage, this.x - this.birdImage.width, this.y - this.birdImage.height, this.birdImage.width * 2.5, this.birdImage.height * 2.5);
+        
     }
 
     update() {
