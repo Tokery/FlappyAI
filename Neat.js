@@ -1,4 +1,3 @@
-console.log(neataptic);
 var Neat = neataptic.Neat;
 var methods = neataptic.methods;
 var Config = neataptic.Config;
@@ -6,6 +5,7 @@ var Architect = neataptic.architect;
 
 // Global vars
 var neat;
+const popSize = 100;
 // vertical velocity, distance to next pipe, vertical distance to top, vertical distance to bottom
 var genomeInputs = 4;
 var genomeOutputs = 1;
@@ -32,9 +32,9 @@ function initNeat() {
               methods.mutation.ADD_BACK_CONN,
               methods.mutation.SUB_BACK_CONN
             ],
-            popsize: 100,
+            popsize: popSize,
             mutationRate: 0.3,
-            elitism: Math.round(0.1 * 100),
+            elitism: Math.round(0.1 * popSize),
             network: new Architect.Random(
                 genomeInputs,
                 0,
@@ -73,7 +73,7 @@ function endEvaluation() {
         newPopulation.push(neat.getOffspring());
     }
 
-    // Replate the old population with the new population
+    // Replace the old population with the new population
     neat.population = newPopulation;
     neat.mutate();
 
