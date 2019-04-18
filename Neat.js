@@ -5,7 +5,7 @@ var Architect = neataptic.architect;
 
 // Global vars
 var neat;
-const popSize = 100;
+const popSize = 500;
 // vertical velocity, distance to next pipe, vertical distance to top, vertical distance to bottom
 var genomeInputs = 4;
 var genomeOutputs = 1;
