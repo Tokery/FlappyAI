@@ -1,6 +1,6 @@
 class PipePair {
     constructor() {
-        this.gap = 150;
+        this.gap = 190;
         this.topHeight = floor(random(20, canvas.height - 100 - this.gap));
         this.bottomHeight = canvas.height - this.topHeight - this.gap;
 
@@ -24,7 +24,6 @@ class PipePair {
 
     offScreen() {
         if (this.bottomPipe.x + this.bottomPipe.width < 0) {
-            console.log('true');
             return true;
         }
         return false;

@@ -9,6 +9,7 @@ class Player {
         this.brain = genome;
         this.brain.score = 0;
         this.score = 0;
+        this.showHitBox = false;
         players.push(this);
 
         this.birdImage = loadImage('./bird.png');
@@ -21,9 +22,13 @@ class Player {
             fill(255, 0, 0);
         }
         
+        if (this.showHitBox) {
+            ellipse(this.x, this.y, this.size);
+        }
+        if (!this.dead) {
+            image(this.birdImage, this.x - this.birdImage.width, this.y - this.birdImage.height, this.birdImage.width * 2.5, this.birdImage.height * 2.5);
+        }
         
-        ellipse(this.x, this.y, this.size);
-        image(this.birdImage, this.x - this.birdImage.width, this.y - this.birdImage.height, this.birdImage.width * 2.5, this.birdImage.height * 2.5);
         
     }
 
@@ -41,8 +46,6 @@ class Player {
 
         var input = this.detect();
         var output = this.brain.activate(input);
-        console.log(output);
-        console.log('Score', this.score);
         this.brain.score = this.score;
         if (output[0] > 0.5) {
             this.flap();

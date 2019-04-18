@@ -1,8 +1,8 @@
 var panSpeed = 8;
 var gravity = 3;
-var bestScore;
 var iteration = 0;
 var players = [];
+var generation = 0;
 
 const ITERATIONS = 1000;
 
@@ -10,7 +10,6 @@ function setup() {
     window.canvas = createCanvas(800, 1000);
     frameRate(40);
     // player = new Player(100, canvas.height/2);
-    // pipe = new Pipe();
     pipePair = new PipePair();
 
     // Stuff for NN
@@ -31,9 +30,9 @@ function setup() {
 
 function draw() {
     background(135, 206, 250);
-    text(str(iteration), 0, 100);
-    // pipe.update();
-    // pipe.show();
+
+    fill(255, 0, 0);
+    text(`Generation: ${str(generation)}`, 0, 200);
     
     // Check if evaluation is done
     let allDead = true;
@@ -49,9 +48,11 @@ function draw() {
     }
     if (allDead) {
         endEvaluation();
+        generation = 0;
     }
 
     if (pipePair.offScreen()) {
+        generation++;
         pipePair = new PipePair();
         for (player of players) {
             if (!player.dead) {
